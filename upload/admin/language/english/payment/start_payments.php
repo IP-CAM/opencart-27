@@ -7,8 +7,7 @@ $_['text_success']					= 'Success: You have modified Start Payments Checkout acc
 $_['text_edit']                     = 'Please, fill in the below fields to start accepting payments on your site. You can find all the required information in your <a href ="https://dashboard.start.payfort.com/">Dashboard </a>';
 $_['text_authorization_capture']			= 'Authorization and Capture';
 $_['text_authorization_only']						= 'Authorization only';
-$_['text_payment']						= 'Payments';
-
+$_['text_start_payments']		= '<a href="https://dashboard.start.payfort.com" target="_blank"><img src="view/image/payment/start-logo.png" alt="Start Payfort" title="Start Payfort" style="border: 1px solid #EEEEEE;" /></a>';
 // Entry
 $_['entry_live_open_key']				= 'Live Open Key';
 $_['entry_live_secret_key']				= 'Live Secret Key';
