@@ -28,6 +28,7 @@ $('input[name="payment_method"][value="start_payments"]').parent().find(".start_
             <add><![CDATA[ } else if (json['start_payment'] && $(".start_response").length ==0) {
                 StartCheckout.config({
                     key: json['start_open_api'],
+		      formLabel: 'Ok',
                     complete: function(params) {
                       submitFormWithToken(params);
                     }
