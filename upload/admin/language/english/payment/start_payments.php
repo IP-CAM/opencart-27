@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']					= 'Start Payments';
+$_['heading_title']					= 'Payfort Start';
 
 // Text
 $_['text_success']					= 'Success: You have modified Start Payments Checkout account details!';
