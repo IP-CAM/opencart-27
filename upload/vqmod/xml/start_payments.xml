@@ -27,7 +27,7 @@ $('input[name="payment_method"][value="start_payments"]').parent().find(".start_
             <search position="after" offset="1"><![CDATA[$('#collapse-payment-method .panel-body').prepend('<div class="alert alert-warning">' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');]]></search>
             <add><![CDATA[ } else if (json['start_payment'] && $(".start_response").length ==0) {
                 StartCheckout.config({
-                    key: json['white_open_api'],
+                    key: json['start_open_api'],
                     complete: function(params) {
                       submitFormWithToken(params);
                     }
@@ -45,11 +45,11 @@ $('input[name="payment_method"][value="start_payments"]').parent().find(".start_
             <add><![CDATA[if(isset($this->session->data['payment_method']['code']) && $this->session->data['payment_method']['code'] == "start_payments"){
                     $json['start_payment'] = 1;
                 if ($this->config->get('start_payments_test')) {
-                $white_open_api = $this->config->get('start_payments_entry_test_open_key');
+                $start_open_api = $this->config->get('start_payments_entry_test_open_key');
             } else {
-                $white_open_api = $this->config->get('start_payments_entry_live_open_key');
+                $start_open_api = $this->config->get('start_payments_entry_live_open_key');
             }
-            $json['white_open_api'] = $white_open_api;
+            $json['start_open_api'] = $start_open_api;
              $total = 0;
 			$taxes = $this->cart->getTaxes();
 
