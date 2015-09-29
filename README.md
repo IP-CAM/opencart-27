@@ -22,7 +22,11 @@ Here are the steps you need to follow:
 
 ### You have ssh access to your server
 
-Here are the steps you need to follow:
+We have an installer script that will download vqmod and our plugin, extract it
+and copy into your opencart root. To get an idea of what it does, please look at its
+[source code](installer.sh)
+
+Follow this steps to install vqmod and our plugin using installer.sh scripe:
 
 1. ssh to your server
 2. download and run installer like this
