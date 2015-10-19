@@ -74,7 +74,8 @@ $('input[name="payment_method"][value="start_payments"]').parent().find(".start_
 				}
 			}
                         $total_key = count($order_data['totals']) - 1;
-                        $json['amount'] = $order_data['totals'][$total_key]['value'] * 100;
+ 			$amount = $this->currency->format($total_data[$total_key]['value'],"","",false);
+			$json['amount'] =  $amount * 100;       
                         $json['currency'] = $this->currency->getCode();
              if(isset($this->session->data['customer_id'])){
                     $json['email'] = $this->customer->getEmail();
