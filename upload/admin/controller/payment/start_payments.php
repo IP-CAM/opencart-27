@@ -163,12 +163,6 @@ class ControllerPaymentStartPayments extends Controller {
             $this->error['warning'] = $this->language->get('error_permission');
         }
 
-        if (!$this->request->post['start_payments_entry_live_open_key']) {
-            $this->error['start_payments_entry_live_open_key'] = $this->language->get('error_start_payments_entry_live_open_key');
-        }
-        if (!$this->request->post['start_payments_entry_live_secret_key']) {
-            $this->error['start_payments_entry_live_secret_key'] = $this->language->get('error_start_payments_entry_live_secret_key');
-        }
         if (!$this->request->post['start_payments_entry_test_open_key']) {
             $this->error['start_payments_entry_test_open_key'] = $this->language->get('error_start_payments_entry_test_open_key');
         }

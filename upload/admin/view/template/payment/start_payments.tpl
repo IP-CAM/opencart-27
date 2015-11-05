@@ -25,7 +25,7 @@
       </div>
       <div class="panel-body">
         <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-start-payments" class="form-horizontal">
-          <div class="form-group required">
+          <div class="form-group">
             <label class="col-sm-2 control-label" for="entry_live_open_key"><?php echo $entry_live_open_key; ?></label>
             <div class="col-sm-10">
               <input type="text" name="start_payments_entry_live_open_key" value="<?php echo $start_payments_entry_live_open_key; ?>" placeholder="<?php echo $entry_live_open_key; ?>" id="entry-username" class="form-control"/>
@@ -34,7 +34,7 @@
               <?php } ?>
             </div>
           </div>
-            <div class="form-group required">
+            <div class="form-group">
             <label class="col-sm-2 control-label" for="entry_live_secret_key"><?php echo $entry_live_secret_key; ?></label>
             <div class="col-sm-10">
               <input type="text" name="start_payments_entry_live_secret_key" value="<?php echo $start_payments_entry_live_secret_key; ?>" placeholder="<?php echo $entry_live_secret_key; ?>" id="entry_live_secret_key" class="form-control"/>
