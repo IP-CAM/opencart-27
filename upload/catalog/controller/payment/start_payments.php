@@ -55,17 +55,20 @@ class ControllerPaymentStartPayments extends Controller {
             "phone" => $order['telephone'],
             "postcode" => $order['payment_postcode']
         );
-
-        $shipping_address = array(
-            "first_name" => $order['shipping_firstname'],
-            "last_name" => $order['shipping_lastname'],
-            "country" => $order['shipping_country'],
-            "city" => $order['shipping_city'],
-            "address_1" => $order['shipping_address_1'],
-            "address_2" => $order['shipping_address_2'],
-            "phone" => $order['telephone'],
-            "postcode" => $order['shipping_postcode']
-        );
+	if ($this->cart->hasShipping()) {
+	    $shipping_address = array(
+	        "first_name" => $order['shipping_firstname'],
+	        "last_name" => $order['shipping_lastname'],
+	        "country" => $order['shipping_country'],
+	        "city" => $order['shipping_city'],
+	        "address_1" => $order['shipping_address_1'],
+	        "address_2" => $order['shipping_address_2'],
+	        "phone" => $order['telephone'],
+	        "postcode" => $order['shipping_postcode']
+	    );
+	}else{
+	    $shipping_address = $billing_address;
+	}
         if ($order['customer_id'] != 0) {
             $this->load->model('account/customer');
             $customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
