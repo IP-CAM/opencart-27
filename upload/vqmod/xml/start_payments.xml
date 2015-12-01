@@ -8,7 +8,9 @@
     <file name="catalog/view/theme/default/template/checkout/checkout.tpl">
         <operation error="skip">
             <search position="after"><![CDATA[<?php echo $header; ?>]]></search>
-            <add><![CDATA[<script src="https://beautiful.start.payfort.com/checkout.js"></script>]]></add>
+            <add><![CDATA[<script src="https://beautiful.start.payfort.com/checkout.js"></script>
+<script> var isStartCheckoutConfigured = false; </script>
+]]></add>
         </operation>
         <operation error="skip">
             <search position="before" offset="1"><![CDATA[<?php echo $footer; ?>]]></search>
@@ -16,7 +18,8 @@
     removePaymentToken();
     $('input[name="payment_method"][value="start_payments"]').parent().append("<span class='start_response'><br>Your Card: xxxx-xxxx-xxxx-<b>"+param.token.card.last4+"</b> <a href='javascript:void(0)' onclick=removePaymentToken();>(Clear)</a></span>");
     $('input[name="payment_method"][value="start_payments"]').parent().find(".start_response").append("<input type = 'hidden' name='payment_token' value = "+param.token.id+"><input type = 'hidden' name='payment_email' value = "+param.email+">");
-    $('#button-payment-method').trigger('click');
+   $('#button-payment-method').removeAttr("disabled");
+     $('#button-payment-method').trigger('click');
 }
 function removePaymentToken(){
 $('input[name="payment_method"][value="start_payments"]').parent().find(".start_response").remove();
@@ -26,13 +29,16 @@ $('input[name="payment_method"][value="start_payments"]').parent().find(".start_
         <operation error="skip">
             <search position="after" offset="1"><![CDATA[$('#collapse-payment-method .panel-body').prepend('<div class="alert alert-warning">' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');]]></search>
             <add><![CDATA[ } else if (json['start_payment'] && $(".start_response").length ==0) {
-                StartCheckout.config({
+               if(!isStartCheckoutConfigured){
+                isStartCheckoutConfigured = true;
+                 StartCheckout.config({
                     key: json['start_open_api'],
 		      formLabel: 'Ok',
                     complete: function(params) {
                       submitFormWithToken(params);
                     }
                   });
+                }
                   StartCheckout.open({
                     amount:   json['amount'], 
                     currency: json['currency'],
@@ -75,7 +81,13 @@ $('input[name="payment_method"][value="start_payments"]').parent().find(".start_
 			}
                         $total_key = count($order_data['totals']) - 1;
  			$amount = $this->currency->format($order_data['totals'][$total_key]['value'],"","",false);
-			$json['amount'] =  $amount * 100;       
+			if (file_exists(DIR_SYSTEM . '../data/currencies.json')) {
+                            $currency_json_data = json_decode(file_get_contents(HTTP_SERVER . 'data/currencies.json'), 1);
+                            $currency_multiplier = $currency_json_data[$this->currency->getCode()];
+                        } else {
+                            $currency_multiplier = 100;
+                        }
+                        $json['amount'] =  $amount * $currency_multiplier;       
                         $json['currency'] = $this->currency->getCode();
              if(isset($this->session->data['customer_id'])){
                     $json['email'] = $this->customer->getEmail();
