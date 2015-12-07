@@ -82,7 +82,7 @@ class ControllerPaymentStartPayments extends Controller {
         $order_items_array_full = array();
         foreach ($products as $key => $items) {
             $order_items_array['title'] = $items['name'];
-            $order_items_array['amount'] = $items['price'];
+            $order_items_array['amount'] = round($items['price'],2)*$currency_multiplier;
             $order_items_array['quantity'] = $items['quantity'];
             array_push($order_items_array_full, $order_items_array);
         }
@@ -110,6 +110,7 @@ class ControllerPaymentStartPayments extends Controller {
                 'amount' => $amount_in_cents,
                 'capture' => $capture,
                 'shopping_cart' => $shopping_cart_array,
+                'shipping_amount' => round($this->session->data['shipping_method']['cost'], 2)*$currency_multiplier,
                 'metadata' => array('reference_id' => $order_id)
             );
             $charge = Start_Charge::create($charge_args);
@@ -125,5 +126,4 @@ class ControllerPaymentStartPayments extends Controller {
         $this->response->addHeader('Content-Type: application/json');
         $this->response->setOutput(json_encode($json));
     }
-
 }
