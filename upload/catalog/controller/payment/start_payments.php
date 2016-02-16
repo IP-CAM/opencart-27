@@ -116,7 +116,7 @@ class ControllerPaymentStartPayments extends Controller {
             $charge = Start_Charge::create($charge_args);
             $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('start_payments_order_status_id'), 			'Charge added: ' . $order_id, false);
             $json['success'] = $this->url->link('checkout/success');
-        } catch (Start_Error_Banking $e) {
+        } catch (Start_Error $e) {
             if ($e->getErrorCode() == "card_declined") {
                 $json['error'] = "Card declined. Please use another card";
             } else {
