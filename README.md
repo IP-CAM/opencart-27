@@ -7,6 +7,6 @@ This is a Start Payment Gateway Extension for Opencart **2.0**. We also have [pl
 
 ## Installation
 
-Please, follow installation guide: https://docs.start.payfort.com/guides/opencart://docs.start.payfort.com/guides/opencart/
+Please, follow installation guide: https://docs.start.payfort.com/guides/opencart/
 
 (c) Payfort 2016
