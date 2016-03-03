@@ -5,7 +5,7 @@
     <vqmver required="true">2.5.0</vqmver>
     <author>Manish</author>
 	
-    <file name="catalog/view/theme/default/template/checkout/checkout.tpl">
+    <file name="catalog/view/theme/*/template/checkout/checkout.tpl">
         <operation error="skip">
             <search position="after"><![CDATA[<?php echo $header; ?>]]></search>
             <add><![CDATA[<script src="https://beautiful.start.payfort.com/checkout.js"></script>
